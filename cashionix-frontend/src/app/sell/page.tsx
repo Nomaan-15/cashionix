@@ -27,8 +27,19 @@ import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { LogOut, User, CheckCircle2, X } from "lucide-react";
 
+// ⭐ ADD THESE INTERFACES AT THE TOP
+interface DeviceInfo {
+  deviceType: string;
+  deviceBrand: string;
+  deviceModel: string;
+}
+
+interface QuestionnaireAnswers {
+  [key: string]: string;
+}
+
 // Model data structure (same as before)
-const deviceModels = {
+const deviceModels: Record<string, Record<string, string[]>> = {
   phone: {
     apple: [
       "iPhone 15 Pro Max",
@@ -200,7 +211,15 @@ const deviceModels = {
 };
 
 // Questionnaire structure (same as before)
-const questionnaireData = {
+const questionnaireData: Record<string, Array<{
+  id: string;
+  question: string;
+  options: Array<{
+    value: string;
+    label: string;
+    info: string | null;
+  }>;
+}>> = {
   phone: [
     {
       id: "warranty",
@@ -520,12 +539,12 @@ export default function SellDevicePage() {
   const [deviceModel, setDeviceModel] = useState("");
   const [estimatedPrice, setEstimatedPrice] = useState(0);
   const [currentStep, setCurrentStep] = useState(1);
-  const [questionnaireAnswers, setQuestionnaireAnswers] = useState({});
+  const [questionnaireAnswers, setQuestionnaireAnswers] = useState<QuestionnaireAnswers>({});
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [showQuestionnaire, setShowQuestionnaire] = useState(false);
 
-  // ⭐ NEW: Store device info when user needs to login
-  const [pendingDeviceInfo, setPendingDeviceInfo] = useState(null);
+  // ⭐ FIXED: Properly typed pendingDeviceInfo
+  const [pendingDeviceInfo, setPendingDeviceInfo] = useState<DeviceInfo | null>(null);
 
   // Contact form states
   const [name, setName] = useState("");
@@ -589,7 +608,7 @@ export default function SellDevicePage() {
     setQuestionnaireAnswers({});
   };
 
-  const handleQuestionnaireAnswer = (questionId, value) => {
+  const handleQuestionnaireAnswer = (questionId: string, value: string) => {
     setQuestionnaireAnswers((prev) => ({
       ...prev,
       [questionId]: value,
@@ -751,7 +770,7 @@ export default function SellDevicePage() {
       resetForm();
     } catch (error) {
       console.error("Order submission error:", error);
-      alert(error.message || "Something went wrong. Please try again.");
+      alert((error as Error).message || "Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
