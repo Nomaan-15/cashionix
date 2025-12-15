@@ -1,0 +1,14 @@
+# Next.js
+cashionix-frontend/node_modules/
+cashionix-frontend/.next/
+cashionix-frontend/.env*
+
+# Django
+cashionix-backend/venv/
+cashionix-backend/__pycache__/
+cashionix-backend/*.sqlite3
+cashionix-backend/.env*
+
+# OS
+.DS_Store
+Thumbs.db
