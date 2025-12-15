@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -25,11 +26,12 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "@/components/Navbar";
 
 export default function HomePage() {
+  const searchRef = useRef<HTMLDivElement>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-  const searchRef = useRef(null);
+  
 
   const rotatingTexts = [
     "Get Instant Cash",
