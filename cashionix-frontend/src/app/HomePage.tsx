@@ -114,14 +114,19 @@ export default function HomePage() {
 
   // Click outside to close suggestions
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (searchRef.current && !searchRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target as Node)
+      ) {
         setShowSuggestions(false);
       }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
   return (
@@ -1700,7 +1705,7 @@ export default function HomePage() {
                     Sell Device
                   </a>
                 </li>
-                
+
                 <li>
                   <a
                     href="#"
@@ -1742,9 +1747,7 @@ export default function HomePage() {
                     Contact
                   </a>
                 </li>
-                <li>
-                 
-                </li>
+                <li></li>
                 <li>
                   <a
                     href="#"
