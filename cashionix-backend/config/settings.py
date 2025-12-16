@@ -116,6 +116,14 @@ CORS_ALLOWED_ORIGINS = [
     "https://cashionix.vercel.app",
 ]
 
+# Add after CORS settings
+CSRF_TRUSTED_ORIGINS = [
+    'https://cashionix-production.up.railway.app',
+    'https://cashionix.vercel.app',
+    'https://*.railway.app',
+    'https://*.vercel.app',
+]
+
 CORS_ALLOW_CREDENTIALS = True
 
 # REST Framework settings (optional but recommended)
