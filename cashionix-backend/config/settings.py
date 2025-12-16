@@ -12,6 +12,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-changethis-secretkey-
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = [
+    "api.cashionix.in",
+    ".up.railway.app",
     'localhost',
     '127.0.0.1',
     '.railway.app',
@@ -144,6 +146,9 @@ CSRF_TRUSTED_ORIGINS = [
     'https://cashionix.vercel.app',
     'https://*.railway.app',
     'https://*.vercel.app',
+    "https://cashionix.in",
+    "https://www.cashionix.in",
+    "https://api.cashionix.in",
 ]
 
 # ========== SESSION & COOKIE SETTINGS FOR CROSS-ORIGIN ==========
