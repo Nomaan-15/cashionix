@@ -16,8 +16,8 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     '.railway.app',
     '.vercel.app',
-    'cashionix.vercel.app',  # Add this
-    'cashionix-production.up.railway.app',  # Add your Railway URL
+    'cashionix.vercel.app',
+    'cashionix-production.up.railway.app',
     'cashionix.in',
     'www.cashionix.in',
     'api.cashionix.in',
@@ -42,8 +42,8 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # ✅ Moved BEFORE SessionMiddleware
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -109,14 +109,33 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# CORS settings
+# ========== CORS SETTINGS ==========
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://localhost:3001",
     "https://cashionix.vercel.app",
+    # Add preview deployments pattern
 ]
 
-# Add after CORS settings
+# Allow all Vercel preview deployments
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https://cashionix-.*\.vercel\.app$",
+]
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+
+# ========== CSRF SETTINGS ==========
 CSRF_TRUSTED_ORIGINS = [
     'https://cashionix-production.up.railway.app',
     'https://cashionix.vercel.app',
@@ -124,9 +143,18 @@ CSRF_TRUSTED_ORIGINS = [
     'https://*.vercel.app',
 ]
 
-CORS_ALLOW_CREDENTIALS = True
+# ========== SESSION & COOKIE SETTINGS FOR CROSS-ORIGIN ==========
+# These are critical for authentication to work between Vercel and Railway
+SESSION_COOKIE_SECURE = True  # Required for HTTPS
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SAMESITE = 'None'  # Allow cross-site cookies
+SESSION_COOKIE_DOMAIN = None  # Don't restrict domain
 
-# REST Framework settings (optional but recommended)
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = False  # JavaScript needs to read this
+CSRF_COOKIE_SAMESITE = 'None'
+
+# ========== REST FRAMEWORK SETTINGS ==========
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
