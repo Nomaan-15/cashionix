@@ -119,7 +119,9 @@ CORS_ALLOWED_ORIGINS = [
 
 # Allow all Vercel preview deployments
 CORS_ALLOWED_ORIGIN_REGEXES = [
-    r"^https://cashionix-.*\.vercel\.app$",
+
+    r"^https://.*\.vercel\.app$",
+    
 ]
 
 CORS_ALLOW_CREDENTIALS = True
