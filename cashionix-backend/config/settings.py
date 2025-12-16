@@ -16,6 +16,8 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     '.railway.app',
     '.vercel.app',
+    'cashionix.vercel.app',  # Add this
+    'cashionix-production.up.railway.app',  # Add your Railway URL
     'cashionix.in',
     'www.cashionix.in',
     'api.cashionix.in',
@@ -111,8 +113,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://localhost:3001",
-    # Add your Vercel URL here when you have it
-    # "https://cashionix.vercel.app",
+    "https://cashionix.vercel.app",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
