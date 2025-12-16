@@ -20,6 +20,21 @@ ALLOWED_HOSTS = [
     'api.cashionix.in',
 ]
 
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',  # This one is missing!
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'rest_framework',
+    'corsheaders',
+    # Your apps
+    'authentication',
+    'devices',
+    'orders',
+]
+
 # MIDDLEWARE - Add WhiteNoise
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
