@@ -1,1 +1,2 @@
-web: python manage.py migrate && gunicorn config.wsgi --log-file - do i need to run this as well
+web: python manage.py migrate && python manage.py collectstatic --noinput && gunicorn config.wsgi:application --bind 0.0.0.0:$PORT
+release: python manage.py migrate
