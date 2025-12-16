@@ -9,3 +9,4 @@ cmds = ["python manage.py collectstatic --noinput"]
 
 [start]
 cmd = "python reset_admin_password.py && python manage.py migrate && gunicorn config.wsgi:application"
+
