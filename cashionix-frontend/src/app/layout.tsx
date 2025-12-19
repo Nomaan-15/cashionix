@@ -7,6 +7,9 @@ import { AuthProvider } from "@/contexts/AuthContext";
 export const metadata: Metadata = {
   title: 'Cashionix - Sell Your Device Instantly',
   description: 'India\'s most trusted platform for buying and selling used phones and laptops. Get the best prices with instant quotes and free pickup.',
+  icons: {
+    icon: "/favicon.png", // 👈 THIS LINE IS IMPORTANT
+  },
 }
 
 export default function RootLayout({
