@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.png",
   },
+  alternates: {
+    canonical: "https://cashionix.in",
+  },
 };
 
 export default function RootLayout({
