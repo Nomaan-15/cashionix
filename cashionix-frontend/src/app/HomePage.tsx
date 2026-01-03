@@ -1482,7 +1482,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-slate-100 mb-4">
-              Why Choose <span className="text-slate-400">InstaCash</span>?
+              Why Choose <span className="text-slate-400">Cashionix</span>?
             </h2>
           </div>
 
@@ -1535,7 +1535,7 @@ export default function HomePage() {
               What Our Customers Say
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Join thousands of satisfied customers who trust InstaCash
+              Join hundreds of satisfied customers who trust Cashionix
             </p>
           </div>
 
@@ -1553,7 +1553,7 @@ export default function HomePage() {
                     <h4 className="font-bold text-gray-900 text-lg">
                       Rajesh Kumar
                     </h4>
-                    <p className="text-gray-600">Mumbai</p>
+                    <p className="text-gray-600">Jayanagar</p>
                   </div>
                 </div>
                 <p className="text-gray-700 mb-6 text-lg leading-relaxed">
@@ -1578,7 +1578,7 @@ export default function HomePage() {
                     <h4 className="font-bold text-gray-900 text-lg">
                       Priya Sharma
                     </h4>
-                    <p className="text-gray-600">Delhi</p>
+                    <p className="text-gray-600">Byrasandra</p>
                   </div>
                 </div>
                 <p className="text-gray-700 mb-6 text-lg leading-relaxed">
@@ -1603,7 +1603,7 @@ export default function HomePage() {
                     <h4 className="font-bold text-gray-900 text-lg">
                       Amit Patel
                     </h4>
-                    <p className="text-gray-600">Bangalore</p>
+                    <p className="text-gray-600">BTM layout</p>
                   </div>
                 </div>
                 <p className="text-gray-700 mb-6 text-lg leading-relaxed">
@@ -1625,7 +1625,7 @@ export default function HomePage() {
             Ready to Get the Best Value for Your Device?
           </h2>
           <p className="text-xl text-slate-400 mb-12 max-w-3xl mx-auto">
-            Join over 5 lakh satisfied customers who have trusted InstaCash for
+            Join over 100's satisfied customers who have trusted Cashionix for
             their device trading needs. Get started today and experience the
             difference.
           </p>
@@ -1806,7 +1806,7 @@ export default function HomePage() {
           <div className="border-t border-slate-800 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <p className="text-slate-500 text-sm">
-                © 2025 Cashionix. All rights reserved.
+                © 2026 Cashionix. All rights reserved.
               </p>
               <div className="flex space-x-6 mt-4 md:mt-0">
                 <a

@@ -1244,13 +1244,13 @@ export default function SellDevicePage() {
                       {deviceModel}
                     </h3>
                     <div className="flex space-x-4 text-sm text-slate-400 mt-1">
-                      <div>Instacash Get Upto</div>
+                      <div>Cashionix Get Upto</div>
                       <div className="font-semibold text-cyan-400">
                         ₹ 23,850
                       </div>
                     </div>
                     <div className="flex space-x-4 text-sm text-slate-400">
-                      <div>Instacash Prime Get Upto</div>
+                      <div>Cashionix Prime Get Upto</div>
                       <div className="font-semibold text-cyan-400">
                         ₹ 30,635
                       </div>
