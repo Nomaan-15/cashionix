@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+
   images: {
     remotePatterns: [
       {
@@ -22,6 +23,22 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
     ],
+  },
+
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "www.cashionix.in",
+          },
+        ],
+        destination: "https://cashionix.in/:path*",
+        permanent: true,
+      },
+    ];
   },
 };
 
