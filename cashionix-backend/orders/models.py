@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from devices.models import Device
 
 class SellOrder(models.Model):
@@ -13,15 +14,11 @@ class SellOrder(models.Model):
     final_price = models.IntegerField()
     pickup_address = models.TextField()
     status = models.CharField(max_length=20, default='REQUESTED')
-    created_at = models.DateTimeField(null=True, blank=True)
-
+    created_at = models.DateTimeField(default=timezone.now, blank=True)
     
-    # Additional contact fields
     customer_name = models.CharField(max_length=100, blank=True)
     customer_phone = models.CharField(max_length=20, blank=True)
     customer_email = models.EmailField(blank=True)
-    
-    # Store questionnaire answers as JSON
     questionnaire_answers = models.JSONField(null=True, blank=True)
     
     def __str__(self):
