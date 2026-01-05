@@ -22,7 +22,7 @@ def reverse_func(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('orders', '0005_sellorder_order_id'),  # Check the actual number
+        ('orders', '0005_sellorder_order_id'),  # Make sure this matches!
     ]
 
     operations = [
