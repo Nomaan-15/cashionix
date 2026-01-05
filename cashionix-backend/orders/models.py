@@ -1,31 +1,28 @@
-from django.contrib import admin
-from django.utils import timezone
-from .models import SellOrder
+from django.db import models
+from devices.models import Device
 
-@admin.register(SellOrder)
-class SellOrderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'device', 'customer_name', 'final_price', 'status', 'created_at')
-    list_filter = ('status', 'condition', 'created_at')
-    search_fields = ('customer_name', 'customer_phone', 'customer_email')
-    
-    fieldsets = (
-        ('Customer Information', {
-            'fields': ('customer_name', 'customer_phone', 'customer_email')
-        }),
-        ('Device Information', {
-            'fields': ('device', 'condition')
-        }),
-        ('Order Details', {
-            'fields': ('final_price', 'status', 'pickup_address', 'created_at')
-        }),
-        ('Additional Information', {
-            'fields': ('questionnaire_answers',),
-            'classes': ('collapse',)  # This makes it collapsible
-        }),
+class SellOrder(models.Model):
+    CONDITION_CHOICES = (
+        ('excellent', 'Excellent'),
+        ('good', 'Good'),
+        ('fair', 'Fair'),
     )
+
+    device = models.ForeignKey(Device, on_delete=models.CASCADE)
+    condition = models.CharField(max_length=20, choices=CONDITION_CHOICES)
+    final_price = models.IntegerField()
+    pickup_address = models.TextField()
+    status = models.CharField(max_length=20, default='REQUESTED')
+    created_at = models.DateTimeField(null=True, blank=True)
+
     
-    def save_model(self, request, obj, form, change):
-        # Auto-set created_at if it's a new order and not manually set
-        if not change and not obj.created_at:
-            obj.created_at = timezone.now()
-        super().save_model(request, obj, form, change)
+    # Additional contact fields
+    customer_name = models.CharField(max_length=100, blank=True)
+    customer_phone = models.CharField(max_length=20, blank=True)
+    customer_email = models.EmailField(blank=True)
+    
+    # Store questionnaire answers as JSON
+    questionnaire_answers = models.JSONField(null=True, blank=True)
+    
+    def __str__(self):
+        return f"Order #{self.id} - {self.device} - ₹{self.final_price}"
