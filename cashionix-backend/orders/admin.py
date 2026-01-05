@@ -3,11 +3,14 @@ from .models import SellOrder
 
 @admin.register(SellOrder)
 class SellOrderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'device', 'customer_name', 'final_price', 'status', 'created_at')
+    list_display = ('order_id', 'device', 'customer_name', 'final_price', 'status', 'created_at')
     list_filter = ('status', 'condition', 'created_at')
-    search_fields = ('customer_name', 'customer_phone', 'customer_email')
+    search_fields = ('order_id', 'customer_name', 'customer_phone', 'customer_email')
     
     fieldsets = (
+        ('Order Information', {
+            'fields': ('order_id',)
+        }),
         ('Customer Information', {
             'fields': ('customer_name', 'customer_phone', 'customer_email')
         }),
@@ -22,3 +25,5 @@ class SellOrderAdmin(admin.ModelAdmin):
             'classes': ('collapse',)
         }),
     )
+    
+    readonly_fields = ('order_id',)

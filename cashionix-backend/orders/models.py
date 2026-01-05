@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
 from devices.models import Device
+import random
+import string
 
 class SellOrder(models.Model):
     CONDITION_CHOICES = (
@@ -9,6 +11,7 @@ class SellOrder(models.Model):
         ('fair', 'Fair'),
     )
 
+    order_id = models.CharField(max_length=10, unique=True, blank=True)  # Added null=True
     device = models.ForeignKey(Device, on_delete=models.CASCADE)
     condition = models.CharField(max_length=20, choices=CONDITION_CHOICES)
     final_price = models.IntegerField()
@@ -21,5 +24,15 @@ class SellOrder(models.Model):
     customer_email = models.EmailField(blank=True)
     questionnaire_answers = models.JSONField(null=True, blank=True)
     
+    def save(self, *args, **kwargs):
+        if not self.order_id:
+            while True:
+                code = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
+                if not SellOrder.objects.filter(order_id=code).exists():
+                    self.order_id = code
+                    break
+        
+        super().save(*args, **kwargs)
+    
     def __str__(self):
-        return f"Order #{self.id} - {self.device} - ₹{self.final_price}"
+        return f"{self.order_id} - {self.device} - ₹{self.final_price}"
